@@ -1,6 +1,5 @@
 import Katana from './classes/armory/weapons/Katana.js'
 import Player from './classes/player/Player.js'
-import Sprite from './classes/player/Sprite.js'
 import { loadCharacterAssets } from './utils/assetsLoader.js'
 
 const _appCanvas = document.querySelector('.app')
@@ -10,8 +9,9 @@ loadCharacterAssets()
 
 window.onload = () => {
   const currentPlayer = new Player('Simtax', context, _appCanvas)
-  currentPlayer.changePosition('ArrowUp')
+  currentPlayer.setWeapon(new Katana)
+  console.log(currentPlayer)
   document.querySelector('html').addEventListener('keydown', ({ key }) => {
-    currentPlayer.changePosition(key)
+    currentPlayer.move(key)
   })
 }

@@ -1,11 +1,11 @@
 /** Character assets  */
 
 const characterAssetsPaths = [
-  'assets/img/avatar_face.png',
-  'assets/img/avatar_right_stop.png',
-  'assets/img/avatar_right_walking.png',
-  'assets/img/avatar_left_stop.png',
-  'assets/img/avatar_left_walking.png'
+  'img/avatar_face.png',
+  'img/avatar_right_stop.png',
+  'img/avatar_right_walking.png',
+  'img/avatar_left_stop.png',
+  'img/avatar_left_walking.png'
 ]
 
 const characterLoadedAssets = []

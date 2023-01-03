@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "description": "",
   "main": "./src/app/index.js",
+  "private": true,
   "scripts": {
-    "sass": "sass --watch src/assets/styles:public"
+    "build": "webpack",
+    "dev": "concurrently --kill-others \"sass --watch src/assets/styles:dist\" \"webpack-dev-server\""
   },
   "keywords": [],
   "author": "",
@@ -12,5 +14,11 @@
   "dependencies": {
     "sass": "^1.57.1",
     "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }
