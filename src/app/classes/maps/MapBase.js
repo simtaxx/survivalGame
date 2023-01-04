@@ -13,24 +13,8 @@ class MapBase {
     this.setMap()
   }
 
-  move(newPosition) {
-    switch (newPosition) {
-      case 'ArrowRight':
-        this.position.x -= 20
-        break;
-      case 'ArrowLeft':
-        this.position.x += 20
-        break;
-        case 'ArrowUp':
-          this.position.y += 20
-          break;
-      case 'ArrowDown':
-        this.position.y -= 20
-        break;
-
-      default:
-        break;
-    }
+  setPosition(positions) {
+    this.position = positions
   }
 
   setMap(mapPath) {
