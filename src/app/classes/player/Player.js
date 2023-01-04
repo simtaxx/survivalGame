@@ -1,55 +1,26 @@
 import Sprite from './Sprite'
 import uniqid from 'uniqid'
+import { canvasDimension } from '../../utils/constants'
 
 class Player {
   context = null
-  _canvas = null
 
   id = uniqid('user-')
   name = ''
   sprite = null
-  position = { x: 0, y: 0 }
+  position = { x: canvasDimension.width / 2.1, y: canvasDimension.height / 2.1 }
   score = 0
   weapons = []
 
-  constructor(name, context, _canvas) {
+  constructor(name, context) {
     this.name = name
     this.context = context
-    this._canvas = _canvas
 
     this.setSprite()
   }
 
   setSprite() {
-    this.sprite = new Sprite(this.context, this._canvas)
-  }
-
-  move(newPosition) {
-    this.sprite.setPosition(newPosition)
-    switch (newPosition) {
-      case 'ArrowRight':
-        this.position.x += 20
-        break;
-      case 'ArrowLeft':
-        this.position.x -= 20
-        break;
-        case 'ArrowUp':
-          this.position.y -= 20
-          break;
-      case 'ArrowDown':
-        this.position.y += 20
-        break;
-
-      default:
-        break;
-    }
-    this.draw()
-  }
-
-  draw() {
-    const { x, y } = this.position
-    this.context.clearRect(0, 0, this._canvas.width, this._canvas.height)
-    this.context.drawImage(this.sprite, x, y, 60, 70)
+    this.sprite = new Sprite()
   }
 
   setWeapon(weapon) {

@@ -1,17 +1,34 @@
-import Katana from './classes/armory/weapons/Katana.js'
 import Player from './classes/player/Player.js'
-import { loadCharacterAssets } from './utils/assetsLoader.js'
-
-const _appCanvas = document.querySelector('.app')
-const context = _appCanvas.getContext('2d')
+import { loadCharacterAssets, loadMapsAssets } from './utils/assetsLoader.js'
+import Canvas from './classes/game/Canvas.js'
+import TestMap from './classes/maps/TestMap.js'
 
 loadCharacterAssets()
+loadMapsAssets()
 
 window.onload = () => {
-  const currentPlayer = new Player('Simtax', context, _appCanvas)
-  currentPlayer.setWeapon(new Katana)
-  console.log(currentPlayer)
+  const canvas = new Canvas()
+  const canvasContext = canvas.generateContext(document)
+  const currentMap = new TestMap
+  const currentPlayer = new Player('Simtax', canvasContext)
+
   document.querySelector('html').addEventListener('keydown', ({ key }) => {
-    currentPlayer.move(key)
+    currentPlayer.sprite.setPosition(key)
+    currentMap.move(key)
+    const { x, y } = currentMap.position
+
+    canvas.clearCanvas()
+
+    canvas.draw(
+      currentMap.mapBackground,
+      { x, y },
+      { width: currentMap.width, height: currentMap.height }
+    )
+
+    canvas.draw(
+      currentPlayer.sprite,
+      { x: currentPlayer.position.x, y: currentPlayer.position.y },
+      { width: 50, height: 60 }
+    )
   })
 }
