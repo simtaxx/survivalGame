@@ -3,7 +3,7 @@ class Sprite extends Image {
     ArrowUp: 'img/characters/player/avatar_face.png',
     ArrowDown: 'img/characters/player/avatar_face.png',
     ArrowRight: 'img/characters/player/avatar_right_walking.png',
-    ArrowLeft: 'img/characters/player/avatar_left_walking.png',
+    ArrowLeft: 'img/characters/player/avatar_left_walking.png'
   }
 
   setPosition(newPosition) {
