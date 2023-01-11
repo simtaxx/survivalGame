@@ -33,26 +33,37 @@ window.onload = () => {
       keys[key] = false;
   });
 
-  const updateFrame = () => {
-    currentPlayer.move(keys, currentMap.width, currentMap.height)
-    currentMap.setPosition(currentPlayer.position)
-
-    canvas.clearCanvas()
-
-    canvas.draw(
-      currentMap.mapBackground,
-      { x: currentMap.position.x, y: currentMap.position.y },
-      { width: currentMap.width, height: currentMap.height }
-    )
-
-    canvas.draw(
-      currentPlayer.sprite,
-      { x: canvasDimension.width / 2.1, y: canvasDimension.height / 2.1 },
-      { width: playerCharacterSize.width, height: playerCharacterSize.height }
-    )
-  }
+  let countRefresh = 0
 
   setInterval(() => {
-    updateFrame()
-  }, 1000/60);
+    countRefresh = 0
+  }, 1000);
+
+  const updateFrame = () => {
+    requestAnimationFrame(updateFrame)
+    console.log(countRefresh)
+
+    if (countRefresh <= 60) {
+      countRefresh++
+
+      currentPlayer.move(keys, currentMap.width, currentMap.height)
+      currentMap.setPosition(currentPlayer.position)
+  
+      canvas.clearCanvas()
+  
+      canvas.draw(
+        currentMap.mapBackground,
+        { x: currentMap.position.x, y: currentMap.position.y },
+        { width: currentMap.width, height: currentMap.height }
+      )
+  
+      canvas.draw(
+        currentPlayer.sprite,
+        { x: canvasDimension.width / 2.1, y: canvasDimension.height / 2.1 },
+        { width: playerCharacterSize.width, height: playerCharacterSize.height }
+      )
+    }
+  }
+
+  updateFrame()
 }
