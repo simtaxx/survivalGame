@@ -34,8 +34,6 @@ window.onload = () => {
   });
 
   const updateFrame = () => {
-    requestAnimationFrame(updateFrame)
-
     currentPlayer.move(keys, currentMap.width, currentMap.height)
     currentMap.setPosition(currentPlayer.position)
 
@@ -54,5 +52,7 @@ window.onload = () => {
     )
   }
 
-  updateFrame()
+  setInterval(() => {
+    updateFrame()
+  }, 1000/60);
 }
