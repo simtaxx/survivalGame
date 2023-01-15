@@ -8,5 +8,10 @@ window.onload = () => {
 
   const game = new Game()
     .setDocument(document)
-    .start()
+    .startEnv()
+
+  const lobby = game.setLobby('First lobby')
+
+  game.setCurrentPlayer(lobby.id, 'Simtax')
+  game.startGame()
 }
