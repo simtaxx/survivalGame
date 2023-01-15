@@ -1,10 +1,12 @@
 import Sprite from './Sprite'
 import uniqid from 'uniqid'
+import { halfCanvasDimension } from '../../utils/constants'
 
 class Player {
   id = uniqid('user-')
   context = null
-  width = 35
+  width = 30
+  height = 50
   name = ''
   sprite = new Sprite()
   position = { x: 0, y: 0 }
@@ -64,35 +66,40 @@ class Player {
     return this
   }
 
-  move(keys, currentMapWidth, currentMapHeight) {
+  defineDistance(time, position, canvasWidth, isMore) {
+    const distance = time * (this.speed * 60)
+    return isMore ? position + distance : position - distance
+  }
+
+  move(keys, currentMapWidth, currentMapHeight, time, canvasWidth) {
     const { x, y } = this.position
 
     if (keys['ArrowUp']) {
-      this.setYPosition(y + this.speed, 'ArrowUp')
+      this.setYPosition(this.defineDistance(time, y, canvasWidth, true), 'ArrowUp')
     }
 
     if (keys['ArrowDown']) {
-      this.setYPosition(y - this.speed, 'ArrowDown')
+      this.setYPosition(this.defineDistance(time, y, canvasWidth), 'ArrowDown')
     }
 
     if (keys['ArrowRight']) {
-      this.setXPosition(x - this.speed, 'ArrowRight')
+      this.setXPosition(this.defineDistance(time, x, canvasWidth), 'ArrowRight')
     }
 
     if (keys['ArrowLeft']) {
-      this.setXPosition(x + this.speed, 'ArrowLeft')
+      this.setXPosition(this.defineDistance(time, x, canvasWidth, true), 'ArrowLeft')
     }
 
-    if (this.position.x <= -(currentMapWidth - this.width - 500)) {
-      this.setXPosition(-(currentMapWidth - this.width - 500))
-    } else if (this.position.x >= 510 - this.width) {
-      this.setXPosition(510 - this.width)
+    if (this.position.x <= -(currentMapWidth - this.width - halfCanvasDimension.width)) {
+      this.setXPosition(-(currentMapWidth - this.width - halfCanvasDimension.width))
+    } else if (this.position.x >= halfCanvasDimension.width - this.width) {
+      this.setXPosition(halfCanvasDimension.width - this.width)
     }
 
-    if (this.position.y <= -(currentMapHeight - this.width - 340)) {
-      this.setYPosition(-(currentMapHeight - this.width - 340))
-    } else if (this.position.y >= 340 - this.width) {
-      this.setYPosition(340 - this.width)
+    if (this.position.y <= -(currentMapHeight - this.height - halfCanvasDimension.height)) {
+      this.setYPosition(-(currentMapHeight - this.height - halfCanvasDimension.height))
+    } else if (this.position.y >= halfCanvasDimension.height - 20) {
+      this.setYPosition(halfCanvasDimension.height - 20)
     }
 
     return this
