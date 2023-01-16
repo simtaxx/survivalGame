@@ -1,5 +1,6 @@
 import uniqid from 'uniqid'
-import { halfCanvasDimension } from '../../../utils/constants'
+import { halfCanvasDimension, refreshRate } from '../../../utils/constants'
+import PlayerSprite from '../../sprites/player/PlayerSprite'
 import Entity from '../Entity'
 
 class Player extends Entity {
@@ -8,8 +9,9 @@ class Player extends Entity {
   height = 50
   score = 0
   weapons = []
-  speed = 10
+  speed = 20
   life = 200
+  sprite = new PlayerSprite
 
   setName(name) {
     this.name = name
@@ -17,8 +19,14 @@ class Player extends Entity {
     return this
   }
 
+  setWeapon(weapon) {
+    this.weapons.push(weapon)
+
+    return this
+  }
+
   distanceToTravel(time, position, isMore) {
-    const distance = time * (this.speed * 60)
+    const distance = time * (this.speed * refreshRate)
     return isMore ? position + distance : position - distance
   }
 

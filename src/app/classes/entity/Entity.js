@@ -1,11 +1,9 @@
-import Sprite from "./player/Sprite"
-
 class Entity {
   name = ''
   context = null
   width = 30
   height = 50
-  sprite = new Sprite
+  sprite = null
   position = { x: 0, y: 0 }
   speed = 1
   life = 1
@@ -17,20 +15,14 @@ class Entity {
   }
 
   setSpritePosition(position) {
-    this.sprite.setPosition(position)
-
-    return this
-  }
-
-  setWeapon(weapon) {
-    this.weapons.push(weapon)
+    this.sprite.setSpritePosition(position)
 
     return this
   }
 
   setStartPosition(positions) {
     this.position = positions
-    this.sprite.setPosition('ArrowUp')
+    this.setSpritePosition('ArrowUp')
 
     return this
   }
@@ -39,7 +31,7 @@ class Entity {
     this.position.x = x
 
     if (spritePosition) {
-      this.sprite.setPosition(spritePosition)
+      this.setSpritePosition(spritePosition)
     }
 
     return this
@@ -49,7 +41,7 @@ class Entity {
     this.position.y = y
 
     if (spritePosition) {
-      this.sprite.setPosition(spritePosition)
+      this.setSpritePosition(spritePosition)
     }
 
     return this

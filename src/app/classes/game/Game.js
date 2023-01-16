@@ -4,6 +4,7 @@ import Canvas from './Canvas'
 import { canvasDimension } from '../../utils/constants'
 import { playerCharacterSize } from '../../utils/characterSizes.js'
 import Lobby from './Lobby'
+import Badydees from '../entity/mobs/nightmares/Badydees'
 
 class Game {
   document = null
@@ -12,6 +13,7 @@ class Game {
   currentPlayer = null
   #lastFrameTime = 0
   lobbies = {}
+  mobtest = new Badydees
 
   constructor() {
     this.updateFrame = this.updateFrame.bind(this)

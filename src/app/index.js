@@ -1,8 +1,9 @@
-import { loadCharacterAssets, loadMapsAssets } from './utils/assetsLoader.js'
+import { loadCharacterAssets, loadMapsAssets, loadMobsAssets } from './utils/assetsLoader.js'
 import Game from './classes/game/Game.js'
 
 loadCharacterAssets()
 loadMapsAssets()
+loadMobsAssets()
 
 window.onload = () => {
 

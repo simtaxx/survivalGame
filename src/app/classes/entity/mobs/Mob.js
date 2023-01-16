@@ -1,7 +1,9 @@
-class Mob {
+import Entity from '../Entity'
+
+class Mob extends Entity {
   name = ''
-  sprite = new Sprite()
-  type = ''
+  sprite = null
+  family = ''
   element = ''
   damages = 10
   context = null
@@ -12,7 +14,11 @@ class Mob {
   life = 200
   focusedPlayer = null
 
-  setName 
+  setFocusedPlayer(focusedPlayer) {
+    this.focusedPlayer = focusedPlayer
+
+    return this
+  }
 }
 
 export default Mob
